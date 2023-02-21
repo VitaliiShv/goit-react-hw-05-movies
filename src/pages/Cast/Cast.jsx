@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import api from 'shared/api/movies-api';
+import defaultImage from 'shared/images/default-profile-image.png';
 
 const Cast = () => {
   const [cast, setCast] = useState([]);
@@ -26,7 +27,11 @@ const Cast = () => {
   const elements = cast.length ? (
     cast.map(({ profile_path, name, character, id }) => (
       <li key={id}>
-        <img src={`${imageURL}${profile_path}`} alt={name} width={150} />
+        {profile_path ? (
+          <img src={`${imageURL}${profile_path}`} alt={name} width={150} />
+        ) : (
+          <img src={defaultImage} alt={name} width={150} />
+        )}
         <p>{name}</p>
         <p>Character:{character}</p>
       </li>
