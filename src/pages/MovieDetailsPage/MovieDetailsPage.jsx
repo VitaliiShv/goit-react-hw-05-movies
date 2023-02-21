@@ -7,11 +7,9 @@ import {
   useLocation,
 } from 'react-router-dom';
 import api from 'shared/api/movies-api';
-import styles from './MovieDetailsPage.module.css';
 
 const MovieDetailsPage = () => {
-  const [movie, setMovie] = useState(null);
-  const [error, setError] = useState(null);
+  const [movie, setMovie] = useState({});
   const { movieId } = useParams();
 
   const navigate = useNavigate();
@@ -23,66 +21,60 @@ const MovieDetailsPage = () => {
       try {
         const movie = await api.getMovieById(movieId);
         setMovie(movie);
-      } catch (error) {
-        setError('An error occurred while fetching movie data.');
+      } catch (data) {
+        console.log(data.message);
       }
     };
     fetchMovieDetails();
   }, [movieId]);
 
+  const {
+    poster_path,
+    original_title,
+    vote_average,
+    release_date,
+    overview,
+    genres,
+  } = movie;
   const imageURL = 'https://image.tmdb.org/t/p/w500/';
-  let poster_path, original_title, vote_average, release_date, overview, genres;
-
-  if (movie) {
-    poster_path = movie.poster_path;
-    original_title = movie.original_title;
-    vote_average = movie.vote_average;
-    release_date = movie.release_date;
-    overview = movie.overview;
-    genres = movie.genres;
-  }
-
   const voteAverage = (vote_average * 10).toFixed(2);
-
   return (
-    <div className={styles.container}>
-      <img
-        src={poster_path ? `${imageURL}${poster_path}` : 'error'}
-        alt={original_title}
-        className={styles.image}
-      />
-      <div className={styles.details}>
-        <h2 className={styles.title}>
+    <>
+      <button type="button" onClick={() => navigate(from)}>
+        Go back
+      </button>
+      <div>
+        <img
+          src={poster_path ? `${imageURL}${poster_path}` : 'error'}
+          alt={original_title}
+          width={250}
+        />
+        <h2>
           {original_title}
-          {release_date && <span>({release_date.slice(0, 4)})</span>}
+          <span>({release_date && release_date.slice(0, 4)})</span>
         </h2>
-        <h3 className={styles.score}>User Score</h3>
+        <h3>User Score</h3>
         <p>{voteAverage}%</p>
-        <h3 className={styles.overview}>Overview</h3>
-        <p className={styles.overview}>{overview}</p>
-        <h3 className={styles.genres}>Genres</h3>
-        <p className={styles.genres}>
-          {genres?.map(({ name }) => name).join(', ')}
-        </p>
-        <h3 className={styles.additionalInfo}>Additional information</h3>
-        <ul className={styles.additionalInfo}>
+        <h3>Overwiew</h3>
+        <p>{overview}</p>
+        <h3>Genres</h3>
+        <p>{genres?.map(({ name }) => name).join(', ')}</p>
+        <h3>Additional information</h3>
+        <ul>
           <li>
-            <Link to="cast" state={{ from }} className={styles.link}>
+            <Link to="cast" state={{ from }}>
               Cast
             </Link>
           </li>
           <li>
-            <Link to="reviews" state={{ from }} className={styles.link}>
+            <Link to="reviews" state={{ from }}>
               Reviews
             </Link>
           </li>
         </ul>
+        <Outlet />
       </div>
-      <button className={styles.backBtn} onClick={() => navigate(from)}>
-        Go back
-      </button>
-      <Outlet />
-    </div>
+    </>
   );
 };
 
