@@ -23,13 +23,17 @@ const Cast = () => {
 
   const imageURL = 'https://image.tmdb.org/t/p/w500/';
 
-  const elements = cast.map(({ profile_path, name, character, id }) => (
-    <li key={id}>
-      <img src={`${imageURL}${profile_path}`} alt="name" />
-      <p>{name}</p>
-      <p>Character:{character}</p>
-    </li>
-  ));
+  const elements = cast.length ? (
+    cast.map(({ profile_path, name, character, id }) => (
+      <li key={id}>
+        <img src={`${imageURL}${profile_path}`} alt={name} width={150} />
+        <p>{name}</p>
+        <p>Character:{character}</p>
+      </li>
+    ))
+  ) : (
+    <p>We don't have any actors for this movie</p>
+  );
 
   return <ul>{elements}</ul>;
 };

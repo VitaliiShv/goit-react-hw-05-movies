@@ -1,65 +1,8 @@
 .container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  padding: 10px;
 }
 
-.container img {
-  width: 250px;
-  height: 375px;
-  object-fit: cover;
-}
-
-.title {
-  font-size: 36px;
-  font-weight: 600;
-  margin-bottom: 16px;
-}
-
-.title span {
-  font-size: 24px;
-  font-weight: 400;
-}
-
-.score {
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 16px;
-}
-
-.overview {
-  font-size: 18px;
-  margin-bottom: 16px;
-}
-
-.genres {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 16px;
-}
-
-.additional-info {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 16px;
-}
-
-.additional-info li {
-  list-style: none;
-  margin-bottom: 8px;
-}
-
-.back-btn {
-  font-size: 16px;
-  padding: 8px 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #fff;
-  color: #333;
-  cursor: pointer;
-}
-
-.back-btn:hover {
-  background-color: #333;
-  color: #fff;
+.movieInfo {
+  padding: 10px;
 }

@@ -28,13 +28,8 @@ const Searchbar = ({ onSubmit }) => {
   };
 
   return (
-    <header className={css.searchbar}>
+    <div className={css.searchbar}>
       <form className={css.searchForm} onSubmit={handleSubmit}>
-        <button type="submit" className={css.searchFormButton}>
-          <ImSearch style={{ width: 22, height: 22 }} />
-          <span className={css.searchFormButtonLabel}>Search</span>
-        </button>
-
         <input
           onChange={handleChange}
           className={css.searchFormInput}
@@ -46,8 +41,11 @@ const Searchbar = ({ onSubmit }) => {
           placeholder="Search movies"
           required
         />
+        <button type="submit" className={css.searchFormButton}>
+          <ImSearch style={{ width: 22, height: 22 }} />
+        </button>
       </form>
-    </header>
+    </div>
   );
 };
 
