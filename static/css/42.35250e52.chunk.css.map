@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/42.35250e52.chunk.css","mappings":"AAAA,mCACE,YAAa,CACb,YACF,CAEA,mCACE,YACF","sources":["pages/MovieDetailsPage/MovieDetailsPage.module.css"],"sourcesContent":[".container {\n  display: flex;\n  padding: 10px;\n}\n\n.movieInfo {\n  padding: 10px;\n}\n"],"names":[],"sourceRoot":""}
